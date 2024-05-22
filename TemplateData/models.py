@@ -1,11 +1,14 @@
 from django.db import models
-from UserData.models import Answer
-
 # Create your models here.
 
 class Question(models.Model):
+    type_choices = [
+        ("txt" , "Text"),
+        ("img" , "Image"),
+        ("clr" , "color"),
+    ]
     name = models.CharField(max_length=100, unique=True)
-    default_answertype = models.CharField(max_length=30, choices=Answer.type_choices,unique=True)
+    default_answertype = models.CharField(max_length=30, choices=type_choices,unique=True)
     title_de = models.CharField(max_length=100, unique=True)
     desc_de = models.CharField(max_length=1000, unique=True)
     title_en = models.CharField(max_length=100, unique=True)
