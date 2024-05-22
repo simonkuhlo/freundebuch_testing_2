@@ -1,4 +1,5 @@
 from django.db import models
+from TemplateData import models as td
 
 # Create your models here.
 class User(models.Model):
@@ -13,7 +14,7 @@ class User(models.Model):
     
 class Entry(models.Model):
     author = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    #template = models.ForeignKey(BasicInfo, on_delete=models.SET_NULL, null=True)
+    template = models.ForeignKey(td.EntryTemplate, on_delete=models.SET_NULL, null=True)
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -21,7 +22,7 @@ class Entry(models.Model):
     
 class Interview(models.Model):
     entry = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
-    #template = models.ForeignKey(BasicInfo, on_delete=models.SET_NULL, null=True)
+    template = models.ForeignKey(td.InterviewTemplate, on_delete=models.SET_NULL, null=True)
     
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
@@ -34,7 +35,7 @@ class Answer(models.Model):
         ("clr" , "color"),
     ]
     interview = models.ForeignKey(Interview, on_delete=models.SET_NULL, null=True)
-    #question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
+    question = models.ForeignKey(td.Question, on_delete=models.SET_NULL, null=True)
     type = models.CharField(max_length=100, unique=True)
     text = models.CharField(max_length=3000, unique=True)
     image = models.ImageField(upload_to="upload", default="no_image.webp", blank=True)
