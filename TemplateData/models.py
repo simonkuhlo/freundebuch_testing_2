@@ -17,14 +17,6 @@ class Question(models.Model):
     def __str__(self):
         return(str(self.name))
 
-class InterviewTemplate(models.Model):
-    name = models.CharField(max_length=100, unique=True)
-    description = models.CharField(max_length=1000, unique=True)
-    questions = models.ManyToManyField(Question, through="InterviewQuestions")
-
-    def __str__(self):
-        return(str(self.name))
-
 class DisplayStyle(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=1000, unique=True)
@@ -32,7 +24,16 @@ class DisplayStyle(models.Model):
 
     def __str__(self):
         return(str(self.name))
-
+    
+class InterviewTemplate(models.Model):
+    name = models.CharField(max_length=100, unique=True)
+    description = models.CharField(max_length=1000, unique=True)
+    questions = models.ManyToManyField(Question, through="InterviewQuestions")
+    displayStyle = models.ForeignKey(DisplayStyle, on_delete=models.SET_NULL, null=True, blank=True)
+    
+    def __str__(self):
+        return(str(self.name))
+    
 class EntryTemplate(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=1000, unique=True)
@@ -46,7 +47,13 @@ class EntryInterviews(models.Model):
     index = models.IntegerField()
     interviewTemplate = models.ForeignKey(InterviewTemplate, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return(f"{self.entryTemplate} [{self.index}]-> {self.interviewTemplate} ")
+
 class InterviewQuestions(models.Model):
     interviewTemplate = models.ForeignKey(InterviewTemplate, on_delete=models.CASCADE)
     index = models.IntegerField()
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return(f"{self.interviewTemplate} [{self.index}]-> {self.question} ")
