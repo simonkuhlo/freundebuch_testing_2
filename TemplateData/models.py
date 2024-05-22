@@ -14,20 +14,32 @@ class Question(models.Model):
     title_en = models.CharField(max_length=100, unique=True)
     desc_en = models.CharField(max_length=1000, unique=True)
 
+    def __str__(self):
+        return(str(self.name))
+
 class InterviewTemplate(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=1000, unique=True)
     questions = models.ManyToManyField(Question, through="InterviewQuestions")
+
+    def __str__(self):
+        return(str(self.name))
 
 class DisplayStyle(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=1000, unique=True)
     template_path = models.CharField(max_length=1000, unique=True)
 
+    def __str__(self):
+        return(str(self.name))
+
 class EntryTemplate(models.Model):
     name = models.CharField(max_length=100, unique=True)
     description = models.CharField(max_length=1000, unique=True)
     interviews = models.ManyToManyField(InterviewTemplate, through="EntryInterviews")
+
+    def __str__(self):
+        return(str(self.name))
 
 class EntryInterviews(models.Model):
     entryTemplate = models.ForeignKey(EntryTemplate, on_delete=models.CASCADE)
