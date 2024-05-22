@@ -28,11 +28,11 @@ class Interview(models.Model):
 
 
 class Answer(models.Model):
-    type_choices = {
-        "txt" : "Text",
-        "img" : "Image",
-        "clr" : "color",
-    }
+    type_choices = [
+        ("txt" , "Text"),
+        ("img" , "Image"),
+        ("clr" , "color"),
+    ]
     interview = models.ForeignKey(Interview, on_delete=models.SET_NULL, null=True)
     #question = models.ForeignKey(Question, on_delete=models.SET_NULL, null=True)
     type = models.CharField(max_length=100, unique=True)
