@@ -21,7 +21,7 @@ class Entry(models.Model):
     
     
 class Interview(models.Model):
-    entry = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    entry = models.ForeignKey(Entry, on_delete=models.SET_NULL, null=True)
     template = models.ForeignKey(td.InterviewTemplate, on_delete=models.SET_NULL, null=True)
     
     created = models.DateTimeField(auto_now_add=True)
@@ -36,8 +36,8 @@ class Answer(models.Model):
     ]
     interview = models.ForeignKey(Interview, on_delete=models.SET_NULL, null=True)
     question = models.ForeignKey(td.Question, on_delete=models.SET_NULL, null=True)
-    type = models.CharField(max_length=100, unique=True)
-    text = models.CharField(max_length=3000, unique=True)
+    type = models.CharField(max_length=100)
+    text = models.CharField(max_length=3000)
     image = models.ImageField(upload_to="upload", default="no_image.webp", blank=True)
     #color = answer_color = colorfield.ColorField(default=None, format="rgb", null=True)
 

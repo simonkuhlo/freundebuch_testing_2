@@ -1,0 +1,11 @@
+<form method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        <p>Frage</p>
+        {{ form.id }}
+        <label>{{ form.instance.question }}</label>
+        {{ form }}
+    {% endfor %}
+    <input type="submit" value="Submit">
+</form>

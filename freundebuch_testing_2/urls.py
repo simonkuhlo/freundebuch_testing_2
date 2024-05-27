@@ -21,8 +21,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('<str:lang>/view/', include('TemplateData.urls'), name = 'view'),
-    path('<str:lang>/view/', include('UserData.urls'), name = 'view'),
+    path('td/', include('TemplateData.urls'), name = 'td'),
+    path('ud/', include('UserData.urls'), name = 'ud'),
 ]
 
 if settings.DEBUG:
