@@ -1,9 +1,9 @@
 from django.forms import formset_factory
 from django import forms
 from django.shortcuts import render
-from . import models as td
+from TemplateData import models as td
 from UserData import models as ud
-
+from TemplateData.instances import interviewInstance
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = ud.Answer
@@ -17,10 +17,8 @@ def interview_view(request):
         if formset.is_valid():
             for form in formset:
                 instance = form.save(commit=False)
-                print("frage:")
-                print(instance.question)
                 instance.save()
     else:
-        data = [{'question': question} for question in td.Question.objects.all()]
-        formset = AnswerFormSet(initial=data)
+        formset = interviewInstance.create_interviewInstance(
+            ud.Entry.objects.get(id=1), 1)
     return render(request, 'interview.html', {'formset': formset})
