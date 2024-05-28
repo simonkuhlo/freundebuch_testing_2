@@ -1,20 +1,16 @@
 from TemplateData import models as td
 from UserData import models as ud
 from django import forms
+from django.forms import formset_factory
 
-class QuestionForm(forms.ModelForm):
+class AnswerForm(forms.ModelForm):
     class Meta:
         model = ud.Answer
-        exclude = [] # Assuming 'text' is the field for the answer in your Answer model
+        exclude = []
+        widgets = {
+                    'interview': forms.HiddenInput(),
+                    'question': forms.HiddenInput(),
+                    'type': forms.HiddenInput(),
+                    }
 
-    def __init__(self, *args, **kwargs):
-        self.question = kwargs.pop('question', None)
-        super(QuestionForm, self).__init__(*args, **kwargs)
-
-    def save(self, commit=True):
-        instance = super(QuestionForm, self).save(commit=False)
-        instance.question = self.question
-        if commit:
-            instance.save()
-        return instance
-td.DisplayStyle.objects.all()
+answerFormSet = formset_factory(AnswerForm, extra=0)
