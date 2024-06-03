@@ -4,6 +4,8 @@ from django.shortcuts import render
 from TemplateData import models as td
 from UserData import models as ud
 from TemplateData.instances import interviewInstance
+from TemplateData.dbWrapper import entryTemplateWrapper
+
 class AnswerForm(forms.ModelForm):
     class Meta:
         model = ud.Answer
@@ -22,3 +24,7 @@ def interview_view(request):
         formset = interviewInstance.create_interviewInstance(
             ud.Entry.objects.get(id=1), 1)
     return render(request, 'interview.html', {'formset': formset})
+
+def test(request, lang):
+    print(entryTemplateWrapper.EntryTemplateWrapper(id=1).toJSON(lang))
+    return None

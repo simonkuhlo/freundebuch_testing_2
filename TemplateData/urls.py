@@ -5,5 +5,5 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    path('test/', views.interview_view, name = "test"),
+    path('test/<lang>', views.test, name = "test"),
 ]
