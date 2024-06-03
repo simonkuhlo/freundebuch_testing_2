@@ -1,7 +1,14 @@
-class LanguageDict():
+class LanguageConverter():
+    
     #de is master, must not be None
     de:str = None
     en:str = None
+
+    def __init__(self, de:str=None, en:str=None):
+        if de:
+            self.de = de
+        if en:
+            self.en = en
 
     #add autotranslate if any language is None
     def toDict(self):
