@@ -26,5 +26,5 @@ def interview_view(request):
     return render(request, 'interview.html', {'formset': formset})
 
 def test(request, lang):
-    print(entryTemplateWrapper.EntryTemplateWrapper(id=1).toJSON(lang))
-    return None
+    entrytemplate = entryTemplateWrapper.EntryTemplateWrapper(id=1).toJSON(lang)
+    return render(request, 'interview.html', {'entrytemplate': entrytemplate})
