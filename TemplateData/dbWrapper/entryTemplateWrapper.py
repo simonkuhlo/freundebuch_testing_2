@@ -16,6 +16,7 @@ class EntryTemplateWrapper(DbOW):
 
     def open(self, object=None, id=None) -> None:
         super().open(object, id)
+        self.interviews = []
         self.dbObject:td.EntryTemplate
 
         for object in td.EntryInterviews.objects.filter(entryTemplate=self.dbObject):
