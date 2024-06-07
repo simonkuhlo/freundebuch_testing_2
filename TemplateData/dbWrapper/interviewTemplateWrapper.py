@@ -3,15 +3,18 @@ from TemplateData.dbWrapper.questionWrapper import QuestionWrapper
 
 from TemplateData import models as td
 
-from TemplateData.forms import answerFormSet
+from TemplateData import forms
 
 class InterviewTemplateWrapper(DbOW):
     questions:list[QuestionWrapper] = []
-    formSet = None
+    formList = []
     displayStyle:td.DisplayStyle = None
 
     def __init__(self, dbObject=None, id = None) -> None:
         super().__init__(td.InterviewTemplate, dbObject)
+        self.questions:list[QuestionWrapper] = []
+        self.formList = []
+        self.displayStyle:td.DisplayStyle = None
         self.open(dbObject, id)
 
     def new(self) -> None:
@@ -24,22 +27,21 @@ class InterviewTemplateWrapper(DbOW):
         for object in td.InterviewQuestions.objects.filter(interviewTemplate=self.dbObject):
             self.questions.append(QuestionWrapper(object.question))
     
-    def createFormset(self):
-        intitialData = []
+    def createFormList(self, lang):
+        self.formList = []
         for question in self.questions:
-            data = {
-                'question' : question.dbObject.id,
-                'type'  : question.dbObject.default_answertype
+            form = forms.answerFormFactory(question.dbObject)
+            dict = {
+                'question' : question.toJSON(lang),
+                'form' : form
             }
-            intitialData.append(data)
-        self.formSet = answerFormSet(initial=intitialData)
-        return self.formSet
+            self.formList.append(dict)
+        return self.formList
     
     def toJSON(self, lang:str) -> dict:
         dict = super().toJSON()
         dict['name'] = self.dbObject.name
         dict['desc'] = self.dbObject.description
         dict['template'] = self.displayStyle.template_path
-        dict['formset'] = self.createFormset()
-        dict['questions'] = [question.toJSON(lang) for question in self.questions]
+        dict['formlist'] = self.createFormList(lang)
         return dict
