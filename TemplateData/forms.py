@@ -8,9 +8,24 @@ class AnswerForm(forms.ModelForm):
         model = ud.Answer
         exclude = []
         widgets = {
-                    'interview': forms.HiddenInput(),
-                    'question': forms.HiddenInput(),
-                    'type': forms.HiddenInput(),
-                    }
+            'interview': forms.HiddenInput(),
+            'question': forms.HiddenInput(),
+            'type': forms.HiddenInput(),
+        }
 
-answerFormSet = formset_factory(AnswerForm, extra=0)
+def answerFormFactory(question:td.Question):
+
+    excludeTypes = [value[0] for value in ud.Answer.type_choices]
+    if str(question.default_answertype) in excludeTypes:
+        excludeTypes.remove(str(question.default_answertype))
+
+    intitialData = {
+        'question' : question.id,
+        'type'  : question.default_answertype
+    }
+
+    class DynamicAnswerForm(AnswerForm):
+        class Meta(AnswerForm.Meta):
+            exclude = excludeTypes
+    form = DynamicAnswerForm(initial=intitialData)
+    return form
