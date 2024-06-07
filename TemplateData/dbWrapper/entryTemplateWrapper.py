@@ -8,6 +8,7 @@ class EntryTemplateWrapper(DbOW):
 
     def __init__(self, dbObject=None, id = None) -> None:
         super().__init__(td.EntryTemplate, dbObject)
+        self.interviews:list[InterviewTemplateWrapper] = []
         self.open(dbObject, id)
 
     def new(self) -> None:
@@ -21,7 +22,6 @@ class EntryTemplateWrapper(DbOW):
             self.interviews.append(InterviewTemplateWrapper(object.interviewTemplate))
     
     def toJSON(self, lang:str) -> dict:
-        print(self.dbObject)
         dict = super().toJSON()
         dict['name'] = self.dbObject.name
         dict['desc'] = self.dbObject.description
