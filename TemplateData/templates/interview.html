@@ -1,11 +1,10 @@
 <form method="post">
     {% csrf_token %}
-    {{ formset.management_form }}
-    {% for form in formset %}
-        <p>Frage</p>
-        {{ form.id }}
-        <label>{{ form.instance.question }}</label>
-        {{ form }}
+    {% for interview in entrytemplate.interviews %}
+        {{interview.name}}
+        {% for dict in interview.formlist %}
+            {% include "interviewElement.html" with element=dict %}
+        {% endfor %}
     {% endfor %}
     <input type="submit" value="Submit">
 </form>
