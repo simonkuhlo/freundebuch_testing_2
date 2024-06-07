@@ -3,31 +3,31 @@ from django.db import models
 
 class Question(models.Model):
     type_choices = [
-        ("txt" , "Text"),
-        ("img" , "Image"),
-        ("clr" , "color"),
+        ("text" , "Text"),
+        ("image" , "Image"),
+        ("color" , "color"),
     ]
     name = models.CharField(max_length=100, unique=True)
-    default_answertype = models.CharField(max_length=30, choices=type_choices,unique=True)
-    title_de = models.CharField(max_length=100, unique=True)
-    desc_de = models.CharField(max_length=1000, unique=True)
-    title_en = models.CharField(max_length=100, unique=True)
-    desc_en = models.CharField(max_length=1000, unique=True)
+    default_answertype = models.CharField(max_length=30, choices=type_choices)
+    title_de = models.CharField(max_length=100)
+    desc_de = models.CharField(max_length=1000)
+    title_en = models.CharField(max_length=100)
+    desc_en = models.CharField(max_length=1000)
 
     def __str__(self):
         return(str(self.name))
 
 class DisplayStyle(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    description = models.CharField(max_length=1000, unique=True)
-    template_path = models.CharField(max_length=1000, unique=True)
+    description = models.CharField(max_length=1000)
+    template_path = models.CharField(max_length=1000)
 
     def __str__(self):
         return(str(self.name))
     
 class InterviewTemplate(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    description = models.CharField(max_length=1000, unique=True)
+    description = models.CharField(max_length=1000)
     questions = models.ManyToManyField(Question, through="InterviewQuestions")
     displayStyle = models.ForeignKey(DisplayStyle, on_delete=models.SET_NULL, null=True, blank=True)
     
@@ -36,7 +36,7 @@ class InterviewTemplate(models.Model):
     
 class EntryTemplate(models.Model):
     name = models.CharField(max_length=100, unique=True)
-    description = models.CharField(max_length=1000, unique=True)
+    description = models.CharField(max_length=1000)
     interviews = models.ManyToManyField(InterviewTemplate, through="EntryInterviews")
 
     def __str__(self):

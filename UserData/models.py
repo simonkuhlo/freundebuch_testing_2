@@ -30,9 +30,9 @@ class Interview(models.Model):
 
 class Answer(models.Model):
     type_choices = [
-        ("txt" , "Text"),
-        ("img" , "Image"),
-        ("clr" , "color"),
+        ("text" , "Text"),
+        ("image" , "Image"),
+        ("color" , "color"),
     ]
     interview = models.ForeignKey(Interview, on_delete=models.SET_NULL, null=True)
     question = models.ForeignKey(td.Question, on_delete=models.SET_NULL, null=True)
