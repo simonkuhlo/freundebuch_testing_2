@@ -1,4 +1,5 @@
 from django.db import models
+from freundebuch_testing_2 import db_settings
 from TemplateData import models as td
 
 # Create your models here.
@@ -29,11 +30,7 @@ class Interview(models.Model):
 
 
 class Answer(models.Model):
-    type_choices = [
-        ("text" , "Text"),
-        ("image" , "Image"),
-        ("color" , "color"),
-    ]
+    type_choices = db_settings.type_choices
     interview = models.ForeignKey(Interview, on_delete=models.SET_NULL, null=True)
     question = models.ForeignKey(td.Question, on_delete=models.SET_NULL, null=True)
     type = models.CharField(max_length=100)
