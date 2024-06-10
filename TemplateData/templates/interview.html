@@ -2,8 +2,10 @@
     {% csrf_token %}
     {% for interview in entrytemplate.interviews %}
         {{interview.name}}
+        {% load static %}
+        <link rel='stylesheet' type='text/css' media='screen' href="{% static 'styles/10102.css' %}">
         {% for dict in interview.formlist %}
-            {% include "interviewElement.html" with element=dict %}
+            {% include "questionForm.html" with element=dict %}
         {% endfor %}
     {% endfor %}
     <input type="submit" value="Submit">

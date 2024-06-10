@@ -1,6 +1,17 @@
-<h3>{{element.question.title}}</h3>
-<p>{{element.question.desc}}</p>
-    {{ element.form.text }}
-    {{ element.form.image }} 
-    {{ element.form.color }} 
-<br>
+<div class="e10102001c">
+    <div class="e10102001">
+        <div class="e10102002c">
+            <div class="e10102002">
+                <h3>{{element.question.title}}</h3>
+                <h4>{{element.question.desc}}</h4>
+            </div>
+        </div>
+        <div class="e10102003c">
+            <div class="e10102003">
+                {% block element_content %}
+
+                {% endblock %}
+            </div>
+        </div>
+    </div>
+</div>

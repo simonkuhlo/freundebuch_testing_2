@@ -34,7 +34,7 @@ class Answer(models.Model):
     interview = models.ForeignKey(Interview, on_delete=models.SET_NULL, null=True)
     question = models.ForeignKey(td.Question, on_delete=models.SET_NULL, null=True)
     type = models.CharField(max_length=100)
-    text = models.CharField(max_length=3000)
+    text = models.TextField(max_length=3000)
     image = models.ImageField(upload_to="upload", default="no_image.webp", blank=True)
     #color = answer_color = colorfield.ColorField(default=None, format="rgb", null=True)
 

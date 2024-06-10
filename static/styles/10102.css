@@ -1,0 +1,67 @@
+.e10102001 {
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    font-family: 'Trebutchet MS', cursive;
+}
+
+.e10102002c {
+    background-color: lightblue;
+    padding: 3px;
+}
+.e10102002c {
+    border-radius: 5px;
+}
+
+.e10102002 h3 {
+    margin: 0px;
+
+    font-size: 120%;
+}
+
+.e10102002 h4 {
+    margin: 0px;
+
+    font-size: 90%;
+    font-style: italic;
+}
+
+.e10102003c {
+    height: 300px;
+    padding: 5px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.e10102003{
+    height: 100%;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+}
+
+.e10102003 textarea{
+    height: 100%;
+    width: 100%;
+
+    resize: none;
+    border: none;
+    border-radius: inherit;
+}
+
+.e10102003 input::file-selector-button{
+
+    border: 3px solid lightgray;
+    border-radius: 10px;
+
+    font-style: italic;
+
+}
