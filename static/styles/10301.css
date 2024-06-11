@@ -1,0 +1,11 @@
+/* Interview_Style_1 - Standard List*/
+
+.e10301003 {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.e10301002 {
+    text-align: center;
+}

@@ -1,0 +1,25 @@
+{% load static %}
+<link rel='stylesheet' type='text/css' media='screen' href="{% static 'styles/10401.css' %}">
+<div class="e10401001c">
+    <div class="e10401001">
+
+        <div class="e10401002c">
+            <div class="e10401002">
+
+            </div>
+        </div>
+
+        <div class="e10401003c">
+            <div class="e10401003">
+                <form method="post">
+                    {% csrf_token %}
+                    {% for interview in entrytemplate.interviews %}
+                        {% include interview.template %}
+                    {% endfor %}
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

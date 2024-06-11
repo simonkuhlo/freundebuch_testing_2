@@ -1,0 +1,20 @@
+/* View_Style_1 - List */
+
+.e10401001c {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.e10401001 {
+    max-width: 800px;
+    width: 800px;
+    padding: 50px;
+    background-color: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
+    
+}

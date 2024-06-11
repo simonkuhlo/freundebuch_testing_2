@@ -1,33 +1,32 @@
-.e10102001 {
-    background-color: aliceblue;
+/* Interview_Element_1 */
+
+.e10201001 {
+    background-color: azure;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
     font-family: 'Trebutchet MS', cursive;
 }
 
-.e10102002c {
+.e10201002c {
     background-color: lightblue;
     padding: 3px;
 }
-.e10102002c {
-    border-radius: 5px;
-}
 
-.e10102002 h3 {
+.e10201002 h3 {
     margin: 0px;
 
     font-size: 120%;
 }
 
-.e10102002 h4 {
+.e10201002 h4 {
     margin: 0px;
 
     font-size: 90%;
     font-style: italic;
 }
 
-.e10102003c {
+.e10201003c {
     height: 300px;
     padding: 5px;
 
@@ -36,7 +35,7 @@
     justify-content: center;
 }
 
-.e10102003{
+.e10201003 {
     height: 100%;
     width: 100%;
 
@@ -44,21 +43,25 @@
     align-items: center;
     justify-content: center;
 
+    background-color:aliceblue;
+
     border: 1px solid lightgrey;
     border-radius: 5px;
 }
 
-.e10102003 textarea{
+.e10201003 textarea{
     height: 100%;
     width: 100%;
+
+    background-color:aliceblue;
 
     resize: none;
     border: none;
     border-radius: inherit;
 }
 
-.e10102003 input::file-selector-button{
 
+.e10201003 input::file-selector-button{
     border: 3px solid lightgray;
     border-radius: 10px;
 
