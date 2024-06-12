@@ -5,17 +5,23 @@
 
         <div class="e10401002c">
             <div class="e10401002">
-
+                <h1>New Entry</h1>
             </div>
         </div>
 
         <div class="e10401003c">
             <div class="e10401003">
                 <form method="post">
-                    {% csrf_token %}
-                    {% for interview in entrytemplate.interviews %}
-                        {% include interview.template %}
-                    {% endfor %}
+                    <div class="e10401004c">
+                        <div class="e10401004">
+                            {% csrf_token %}
+                            
+                            {% for interview in entrytemplate.interviews %}
+                                {% include interview.template %}
+                            {% endfor %}
+                            
+                        </div>
+                    </div>
                     <input type="submit" value="Submit">
                 </form>
             </div>
