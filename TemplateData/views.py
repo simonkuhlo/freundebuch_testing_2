@@ -27,4 +27,4 @@ def interview_view(request):
 
 def test(request, lang):
     entrytemplate = entryTemplateWrapper.EntryTemplateWrapper(id=1).toJSON(lang)
-    return render(request, 'viewstyles/overflowTest.html', {'entrytemplate': entrytemplate})
+    return render(request, 'viewstyles/listView.html', {'entrytemplate': entrytemplate})
